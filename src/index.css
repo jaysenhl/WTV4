@@ -140,3 +140,9 @@ form {
   justify-content: space-evenly;
   padding-bottom: 10px;
 }
+
+.restBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

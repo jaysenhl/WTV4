@@ -1,13 +1,14 @@
 import Header from "./Header"
 import 'boxicons'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useRef, useEffect } from 'react';
 import { FaCirclePlus} from "react-icons/fa6";
 import { RxEyeClosed } from "react-icons/rx";
 import { RiEye2Line } from "react-icons/ri"
 import '../index.css'
 import { WorkoutContext } from "./WorkoutContext";
 import Exercise from "./Exercise";
+import gsap from "gsap";
 
 function WorkoutForm(){
     const { addExercise } = useContext(WorkoutContext)
@@ -33,10 +34,10 @@ function WorkoutForm(){
         e.preventDefault();
         console.log(formData);
         addExercise(formData)
-        setFormData({nombre_ejercicio: '',equipo: '', peso: '', repeticiones: '', sets:'', mood: ''})
+        setFormData({nombre_ejercicio: '', equipo: '', peso: '', repeticiones: '', sets:'', mood: ''})
     };
     return(
-        <Container>
+        <Container className="mb-4">
         <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
                 <Form onSubmit={handleSubmit}>
@@ -143,34 +144,51 @@ function WorkoutForm(){
     )
 }
 
-
 function CreateWorkout(){
-    let [isShowing, setIsShowing] = useState(true)
-    
+    let [isShowing, setIsShowing] = useState(false);
+    let [isExerciseListVisible, setIsExerciseListVisible] = useState(false);
+    const formRef = useRef(null);
+    const exerciseListRef = useRef(null);
+
+    useEffect(() => {
+        gsap.to(formRef.current, { autoAlpha: isShowing ? 1 : 0, height: isShowing ? "auto" : 0, duration: 0.5 });
+        gsap.to(exerciseListRef.current, { autoAlpha: isExerciseListVisible ? 1 : 0, height: isExerciseListVisible ? "auto" : 0, duration: 0.5 });
+    }, [isShowing, isExerciseListVisible]);
+
     const formToggle = () => {
         setIsShowing(!isShowing);
     }
+
+    const toggleExerciseList = () => {
+        setIsExerciseListVisible(!isExerciseListVisible);
+    }
+
     return(
         <>
-            <Header iconname="file-plus" title="CREAR RUTINA"/>
-            {isShowing && (
-                <section className="createWorkoutComponent">
-                    <WorkoutForm />
-                </section>
-            )}
-            <div className="btnBox">
-                <button id="toggleBtn" className={isShowing ? 'bg-info' : 'bg-danger'} onClick={formToggle}>
-                        {isShowing ? 'Ocultar Formulario ' : 'Mostrar Formulario '}
-                        {isShowing ? <RiEye2Line size="1.7rem" /> : <RxEyeClosed size="1.7rem" /> }
+            <Header title="CREAR RUTINA"/>
+            <div className="btnBox mb-4">
+                <button id="toggleBtn" onClick={formToggle} className={isShowing ? 'bg-info' : 'bg-danger'}>
+                    {isShowing ? 'Ocultar Formulario ' : 'Mostrar Formulario '}
+                    {isShowing ? <RiEye2Line size="1.7rem" /> : <RxEyeClosed size="1.7rem" />}
                 </button>
             </div>
-            <div className="listaEjercicio text-center">
-            <h1 className="text-info">Lista de ejercicios</h1>
-            <Exercise/>
+            <div ref={formRef} style={{ overflow: 'hidden' }}>
+                <WorkoutForm />
+            </div>
+            <div className="btnBox mb-4">
+                <button id="toggleBtn" onClick={toggleExerciseList} className={isExerciseListVisible ? 'bg-info' : 'bg-danger'}>
+                    {isExerciseListVisible ? 'Ocultar Lista de Ejercicios' : 'Mostrar Lista de Ejercicios'}
+                    {isExerciseListVisible ? <RiEye2Line size="1.7rem" /> : <RxEyeClosed size="1.7rem" />}
+                </button>
+            </div>
+            <div ref={exerciseListRef} style={{ overflow: 'hidden' }}>
+                <div className="listaEjercicio text-center mt-4 mb-4">
+                    <h1 className="text-info">Lista de ejercicios</h1>
+                    <Exercise/>
+                </div>
             </div>
         </>
-        
     )
 }
 
-export default CreateWorkout
+export default CreateWorkout;
