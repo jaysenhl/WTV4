@@ -60,8 +60,7 @@
 
 
 .quoteBox {
-    font-family: "Poetsen One", sans-serif;
-    display: flex;
+    font-family: "Prompt", sans-serif;    display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgba(84, 172, 249, 0.231);
@@ -82,7 +81,62 @@
     font-size: 1.3rem;
 }
 
+.quoteTitle {
+  color: #fca311;
+}
+
 .quoteAuthor {
     font-size: 2rem;
     color: lime;
+}
+
+.label {
+  color: #fca311;
+}
+
+.createWorkoutComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#toggleBtn {
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.btnBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.exerciseWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exerciseComponent {
+  color: #fca311;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.exerciseComponentBtnBox {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 10px;
 }

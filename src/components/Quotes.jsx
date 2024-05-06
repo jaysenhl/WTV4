@@ -23,7 +23,7 @@ function Quotes(){
 
     return(
         <div className='quoteBox'>
-        <h1 className="text-info">Stoicism Quotes</h1>
+        <h1 className="quoteTitle">Stoicism Quotes</h1>
         <h2 className="quoteAuthor">
         <FaAt color="black"/>
         {quote.author || 'Uknown'}
