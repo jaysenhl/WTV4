@@ -3,7 +3,6 @@ import { WorkoutContext } from "./WorkoutContext"
 import { Dropdown } from 'react-bootstrap';
 import RestConfigurator from "./RestConfigurator";
 import { FcCheckmark, FcFullTrash } from "react-icons/fc";
-import { TbTrashX } from "react-icons/tb";
 
 function Exercise(){
     const { exercises, completeSet, removeExercise } = useContext(WorkoutContext)

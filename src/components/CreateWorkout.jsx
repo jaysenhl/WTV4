@@ -13,6 +13,13 @@ import gsap from "gsap";
 function WorkoutForm(){
     const { addExercise } = useContext(WorkoutContext)
     const fecha = new Date().toDateString()
+    const hora = new Date()
+    const formatedTime = hora.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+    });
 
     const [formData, setFormData] = useState({
         nombre_ejercicio: '',
@@ -21,7 +28,7 @@ function WorkoutForm(){
         repeticiones: '',
         sets: '',
         fecha: fecha,
-        // hora: '',
+        hora: formatedTime,
         mood: ''
     });
 
