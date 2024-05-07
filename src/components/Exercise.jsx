@@ -8,7 +8,7 @@ function Exercise(){
     const { exercises, completeSet, removeExercise } = useContext(WorkoutContext)
 
     return(
-        <div className="exerciseWrapper">
+        <div className="exerciseWrapper exercise-component">
             {exercises.map((exercise)=>(
                 <section key={exercise.id} className="exerciseComponent">
                 <h1 className="mt-4"><strong className="text-white">Ejercicio:</strong> {exercise.nombre_ejercicio}</h1>

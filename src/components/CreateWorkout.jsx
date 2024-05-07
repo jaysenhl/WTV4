@@ -1,5 +1,4 @@
 import Header from "./Header"
-import 'boxicons'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import React, { useContext, useState,useRef, useEffect, useLayoutEffect } from 'react';
 import { FaCirclePlus} from "react-icons/fa6";
@@ -7,11 +6,12 @@ import { RxEyeClosed } from "react-icons/rx";
 import { RiEye2Line } from "react-icons/ri"
 import '../index.css'
 import { WorkoutContext } from "./WorkoutContext";
+import { addExercisesToDB } from "./db";
 import Exercise from "./Exercise";
 import gsap from "gsap";
 
 function WorkoutForm() {
-    const { addExercise } = useContext(WorkoutContext)
+    const { exercises, addExercise } = useContext(WorkoutContext)
     const [formData, setFormData] = useState({
       nombre_ejercicio: '',
       equipo: '',
@@ -162,6 +162,7 @@ function WorkoutForm() {
 }
 
 function CreateWorkout(){
+    const { exercises,clearExercises } = useContext(WorkoutContext)
     let [isShowing, setIsShowing] = useState(false);
     let [isExerciseListVisible, setIsExerciseListVisible] = useState(false);
     const formRef = useRef(null);
@@ -187,6 +188,15 @@ function CreateWorkout(){
         setIsExerciseListVisible(!isExerciseListVisible);
     }
 
+    const handleSaveExercises = async () => {
+        try {
+          await addExercisesToDB(exercises);
+          clearExercises();
+        } catch (error) {
+          console.error('Error saving exercises to IndexedDB:', error);
+        }
+      };
+
     return(
         <>
             <Header title="CREAR RUTINA"/>
@@ -208,11 +218,17 @@ function CreateWorkout(){
             <div ref={exerciseListRef} style={{ overflow: 'hidden' }}>
                 <div className="listaEjercicio text-center mt-4 mb-4">
                     <h1 className="title">Lista de ejercicios</h1>
-                    <Exercise/>
-                    <div className="saveBtnBox">
-                        <h4 className="text-info"><strong className="title">Guardar</strong> la lista y crear otra rutina</h4>
-                        <button className="saveBtn bg-info"><strong>Guardar</strong></button>
-                    </div>
+                    {exercises.length > 0 ? (
+                        <>
+                            <Exercise/>
+                            <div className="saveBtnBox">
+                                <h1 className="title">Guardar la lista y crear otra rutina</h1>
+                                <button onClick={handleSaveExercises} className="saveBtn bg-info"><strong>Guardar</strong></button>
+                            </div>
+                        </>
+                    ) : (
+                        <h1 className="text-danger">LA LISTA ESTÁ VACÍA</h1>
+                    )}
                 </div>
             </div>
         </>

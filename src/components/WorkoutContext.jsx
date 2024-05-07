@@ -3,6 +3,7 @@ import React, { createContext, useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import gsap from 'gsap';
 import Swal from 'sweetalert2';
+import { addExercisesToDB } from './db';
 
 export const WorkoutContext = createContext();
 
@@ -10,7 +11,7 @@ export const WorkoutProvider = ({ children }) => {
     const [exercises, setExercises] = useState([]);
     const listRef = useRef(null)
 
-    const addExercise = (exercise) => {
+    const addExercise = async (exercise) => {
         const newExercise = {
             ...exercise,
             id: uuidv4(),  // Agregar un ID único a cada nuevo ejercicio
@@ -18,7 +19,17 @@ export const WorkoutProvider = ({ children }) => {
         };
         setExercises(prevExercises => [...prevExercises, newExercise]);
         Swal.fire('Añadido', 'Ejercicio añadido a la lista', 'success');
-        
+    };
+
+    const clearExercises = () => {
+        gsap.to('.exercise-component', { // Assuming each exercise component has a class "exercise-component"
+            opacity: 0,
+            y: -20,
+            onComplete: () => {
+                setExercises([]); // Clear the exercise list
+                Swal.fire('Rutina Guardada', 'Todos los ejercicios han sido eliminados! puedes crear otra rutina nueva', 'success');
+            }
+        });
     };
 
     const completeSet = (id) => {
@@ -28,7 +39,6 @@ export const WorkoutProvider = ({ children }) => {
             )
         );
         Swal.fire('Completado', 'Un set más completado', 'info');
-        console.log(exercises)
     };
 
     const removeExercise = (id) => {
@@ -43,10 +53,10 @@ export const WorkoutProvider = ({ children }) => {
         Swal.fire('Eliminado', 'Ejercicio eliminado de la lista', 'error');
     };
 
-    
+
 
     return (
-        <WorkoutContext.Provider value={{ exercises, addExercise, completeSet, removeExercise }}>
+        <WorkoutContext.Provider value={{ exercises, addExercise, completeSet, removeExercise, clearExercises }}>
             {children}
         </WorkoutContext.Provider>
     );
