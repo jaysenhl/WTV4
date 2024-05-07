@@ -50,7 +50,6 @@ function WorkoutForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         addExercise(formData)
         setFormData({nombre_ejercicio: '', equipo: '', peso: '', repeticiones: '', sets:'', mood: ''})
     };

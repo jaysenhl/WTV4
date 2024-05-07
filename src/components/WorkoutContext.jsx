@@ -18,6 +18,7 @@ export const WorkoutProvider = ({ children }) => {
         };
         setExercises(prevExercises => [...prevExercises, newExercise]);
         Swal.fire('Añadido', 'Ejercicio añadido a la lista', 'success');
+        
     };
 
     const completeSet = (id) => {
@@ -41,6 +42,8 @@ export const WorkoutProvider = ({ children }) => {
         });
         Swal.fire('Eliminado', 'Ejercicio eliminado de la lista', 'error');
     };
+
+    
 
     return (
         <WorkoutContext.Provider value={{ exercises, addExercise, completeSet, removeExercise }}>
