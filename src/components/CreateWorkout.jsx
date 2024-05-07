@@ -10,27 +10,38 @@ import { WorkoutContext } from "./WorkoutContext";
 import Exercise from "./Exercise";
 import gsap from "gsap";
 
-function WorkoutForm(){
+function WorkoutForm() {
     const { addExercise } = useContext(WorkoutContext)
-    const fecha = new Date().toDateString()
-    const hora = new Date()
-    const formatedTime = hora.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        hour12: true
-    });
-
     const [formData, setFormData] = useState({
-        nombre_ejercicio: '',
-        equipo: '',
-        peso: '',
-        repeticiones: '',
-        sets: '',
-        fecha: fecha,
-        hora: formatedTime,
-        mood: ''
+      nombre_ejercicio: '',
+      equipo: '',
+      peso: '',
+      repeticiones: '',
+      sets: '',
+      fecha: '',
+      hora: ''
     });
+  
+    // Actualizar fecha y hora cada segundo
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const now = new Date();
+        const fecha = now.toLocaleDateString('es-ES', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        const hora = now.toLocaleTimeString('es-ES', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true
+        });
+        setFormData(formData => ({ ...formData, fecha, hora }));
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
