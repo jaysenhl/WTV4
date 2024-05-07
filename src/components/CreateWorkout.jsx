@@ -1,7 +1,7 @@
 import Header from "./Header"
 import 'boxicons'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import React, { useContext, useState,useRef, useEffect } from 'react';
+import React, { useContext, useState,useRef, useEffect, useLayoutEffect } from 'react';
 import { FaCirclePlus} from "react-icons/fa6";
 import { RxEyeClosed } from "react-icons/rx";
 import { RiEye2Line } from "react-icons/ri"
@@ -150,9 +150,16 @@ function CreateWorkout(){
     const formRef = useRef(null);
     const exerciseListRef = useRef(null);
 
-    useEffect(() => {
-        gsap.to(formRef.current, { autoAlpha: isShowing ? 1 : 0, height: isShowing ? "auto" : 0, duration: 0.5 });
-        gsap.to(exerciseListRef.current, { autoAlpha: isExerciseListVisible ? 1 : 0, height: isExerciseListVisible ? "auto" : 0, duration: 0.5 });
+    useLayoutEffect(() => {
+        gsap.set(formRef.current, { autoAlpha: 0 }); // Set initial state for GSAP
+        gsap.set(exerciseListRef.current, { autoAlpha: 0 }); // Set initial state for GSAP
+    }, []);
+
+    useLayoutEffect(() => {
+        if (formRef.current && exerciseListRef.current) {
+            gsap.to(formRef.current, { autoAlpha: isShowing ? 1 : 0, height: isShowing ? "auto" : 0, duration: 0.5 });
+            gsap.to(exerciseListRef.current, { autoAlpha: isExerciseListVisible ? 1 : 0, height: isExerciseListVisible ? "auto" : 0, duration: 0.5 });
+        }
     }, [isShowing, isExerciseListVisible]);
 
     const formToggle = () => {
@@ -177,7 +184,7 @@ function CreateWorkout(){
             </div>
             <div className="btnBox mb-4">
                 <button id="toggleBtn" onClick={toggleExerciseList} className={isExerciseListVisible ? 'bg-info' : 'bg-danger'}>
-                    {isExerciseListVisible ? 'Ocultar Lista de Ejercicios' : 'Mostrar Lista de Ejercicios'}
+                    {isExerciseListVisible ? 'Ocultar Lista de Ejercicios ' : 'Mostrar Lista de Ejercicios '}
                     {isExerciseListVisible ? <RiEye2Line size="1.7rem" /> : <RxEyeClosed size="1.7rem" />}
                 </button>
             </div>
