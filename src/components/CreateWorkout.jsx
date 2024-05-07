@@ -183,8 +183,12 @@ function CreateWorkout(){
             </div>
             <div ref={exerciseListRef} style={{ overflow: 'hidden' }}>
                 <div className="listaEjercicio text-center mt-4 mb-4">
-                    <h1 className="text-info">Lista de ejercicios</h1>
+                    <h1 className="title">Lista de ejercicios</h1>
                     <Exercise/>
+                    <div className="saveBtnBox">
+                        <h4 className="text-info"><strong className="title">Guardar</strong> la lista y crear otra rutina</h4>
+                        <button className="saveBtn bg-info"><strong>Guardar</strong></button>
+                    </div>
                 </div>
             </div>
         </>

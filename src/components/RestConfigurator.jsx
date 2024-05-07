@@ -33,7 +33,7 @@ function RestConfigurator() {
                         Swal.fire({
                             icon: 'success',
                             title: 'Descanso terminado!',
-                            html: '<b style="font-size: 1.5rem;">¡Tiempo de volver al trabajo!</b>',
+                            html: '<b style="font-size: 1.5rem;">¡PRÓXIMO SET!!</b>',
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'OK'
                         });
