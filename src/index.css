@@ -159,3 +159,12 @@ form {
   color:#fca311;
   padding: 15px 30px;
 }
+
+.historyComponent {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}

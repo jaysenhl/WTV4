@@ -18,4 +18,29 @@ export const addExercisesToDB = async (exercises) => {
   }
 };
 
+export const getExercisesGroupedByDate = async () => {
+  try {
+    const allExercises = await db.exercises.toArray();
+    const groupedByDate = allExercises.reduce((acc, curr) => {
+      acc[curr.fecha] = [...(acc[curr.fecha] || []), curr];
+      return acc;
+    }, {});
+    return groupedByDate;
+  } catch (error) {
+    console.error('Failed to fetch exercises grouped by date', error);
+    throw error;
+  }
+};
+
+export const clearDatabase = async () => {
+  try {
+    await db.exercises.clear();
+    Swal.fire("Base de datos limpiada", "Todos los ejercicios han sido eliminados.", "success");
+  } catch (error) {
+    Swal.fire("Error", "No se pudo limpiar la base de datos.", "error");
+    console.error('Failed to clear the database', error);
+    throw error;
+  }
+};
+
 export default db;
