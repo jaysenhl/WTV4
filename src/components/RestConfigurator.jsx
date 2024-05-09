@@ -6,7 +6,7 @@ import { FcAlarmClock } from "react-icons/fc";
 function RestConfigurator() {
     const timerIntervalRef = useRef(null);
     const [showOptions, setShowOptions] = useState(false);
-    const [minutes, setMinutes] = useState('');
+    const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState('');
 
     useEffect(() => {
