@@ -43,6 +43,7 @@ function History() {
 
   return (
     <div className='text-white historyComponent'>
+      <small>Made By Jaysen 🇵🇷</small>
     <h1 className='title mt-3'><FaHistory/> Historial de Rutinas</h1>
     {Object.entries(groupedExercises).length > 0 ? (
       Object.entries(groupedExercises).map(([date, exercises]) => (

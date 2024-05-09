@@ -27,6 +27,7 @@ function Header({ title, iconname }) {
 
     return (
         <div className="headerComponent">
+            <small>Made By Jaysen 🇵🇷</small>
             <h1 className="title">
                 <box-icon animation="tada" type='solid' color="#fca311" size='sm' name={iconname}></box-icon>
                 {title}
