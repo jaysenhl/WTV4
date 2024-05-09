@@ -137,8 +137,11 @@ form {
 
 .exerciseComponentBtnBox {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
   padding-bottom: 10px;
+  gap: 1rem;
 }
 
 .restBtn {
@@ -167,4 +170,17 @@ form {
   align-items: center;
   justify-content: flex-start;
   gap: 2rem;
+}
+
+.repAndSetRangeComponent {
+  color: #fca311;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto 20px auto;
+}
+
+span {
+  color: #fca311;
 }

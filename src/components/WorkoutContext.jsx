@@ -15,7 +15,8 @@ export const WorkoutProvider = ({ children }) => {
         const newExercise = {
             ...exercise,
             id: uuidv4(),  // Agregar un ID único a cada nuevo ejercicio
-            completedSets: 0
+            completedSets: 0,
+            sets:[]
         };
         setExercises(prevExercises => [...prevExercises, newExercise]);
         Swal.fire('Añadido', 'Ejercicio añadido a la lista', 'success');
@@ -32,11 +33,16 @@ export const WorkoutProvider = ({ children }) => {
         });
     };
 
-    const completeSet = (id) => {
+    const completeSet = (id, reps) => {
         setExercises(prevExercises =>
-            prevExercises.map(exercise => 
-                exercise.id === id ? { ...exercise, completedSets: exercise.completedSets + 1 } : exercise
-            )
+            prevExercises.map(exercise => {
+                if (exercise.id === id) {
+                    const newSet = { num: exercise.completedSets + 1, reps: reps };
+                    const updatedSets = exercise.sets ? [...exercise.sets, newSet] : [newSet];
+                    return { ...exercise, completedSets: exercise.completedSets + 1, sets: updatedSets };
+                }
+                return exercise;
+            })
         );
         Swal.fire('Completado', 'Un set más completado', 'info');
     };

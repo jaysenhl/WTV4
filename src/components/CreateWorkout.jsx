@@ -16,8 +16,8 @@ function WorkoutForm() {
       nombre_ejercicio: '',
       equipo: '',
       peso: '',
-      repeticiones: '',
-      sets: '',
+    //   repeticiones: '',
+      sets: [],
       fecha: '',
       hora: ''
     });
@@ -51,7 +51,7 @@ function WorkoutForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         addExercise(formData)
-        setFormData({nombre_ejercicio: '', equipo: '', peso: '', repeticiones: '', sets:'', mood: ''})
+        setFormData({nombre_ejercicio: '', equipo: '', peso: ''}) // elimine sets, repeticiones y mood por ahora
     };
     return(
         <Container className="mb-4">
@@ -106,7 +106,7 @@ function WorkoutForm() {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3 text-center">
+                    {/* <Form.Group className="mb-3 text-center">
                         <Form.Label className="label">Repeticiones</Form.Label>
                         <Form.Control
                             className="text-center"
@@ -130,9 +130,9 @@ function WorkoutForm() {
                             onChange={handleChange}
                             required
                         />
-                    </Form.Group>
+                    </Form.Group> */}
 
-                    <Form.Group className="mb-3 text-center">
+                    {/* <Form.Group className="mb-3 text-center">
                         <Form.Label className="label">Estado de Ánimo</Form.Label>
                         <Form.Control
                             as="select"
@@ -149,7 +149,7 @@ function WorkoutForm() {
                             <option value="triste">Triste 😔</option>
                             <option value="fuerte">Fuerte 💪</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Button variant="primary" type="submit">
                         Añadir a la lista <br /> <FaCirclePlus/>
