@@ -16,7 +16,7 @@ function Dashboard() {
   return (
     <section className='dashboardComponent'>
         <Header iconname="home" title="INICIO"/>
-        <h1 className='title'>CREA ALGO</h1>
+        <h1 className='title'>CREA RUTINAS Y GUARDALAS</h1>
         <div className="linkItems">
           <LinkButton title="CREAR RUTINA" icon="history" to="/create-workout" />
           <LinkButton title="VER HISTORIAL" icon="message-square-add" to="/history" />
