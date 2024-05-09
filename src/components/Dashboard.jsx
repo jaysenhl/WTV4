@@ -16,11 +16,12 @@ function Dashboard() {
   return (
     <section className='dashboardComponent'>
         <Header iconname="home" title="INICIO"/>
-        <Quotes/>
+        <h1 className='title'>CREA ALGO</h1>
         <div className="linkItems">
           <LinkButton title="CREAR RUTINA" icon="history" to="/create-workout" />
           <LinkButton title="VER HISTORIAL" icon="message-square-add" to="/history" />
         </div>
+        <Quotes/>
     </section>
   );
 }

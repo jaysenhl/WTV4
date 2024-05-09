@@ -169,8 +169,8 @@ function CreateWorkout(){
     const exerciseListRef = useRef(null);
 
     useLayoutEffect(() => {
-        gsap.set(formRef.current, { autoAlpha: 0 }); // Set initial state for GSAP
-        gsap.set(exerciseListRef.current, { autoAlpha: 0 }); // Set initial state for GSAP
+        gsap.set(formRef.current, { autoAlpha: 0 });
+        gsap.set(exerciseListRef.current, { autoAlpha: 0 });
     }, []);
 
     useLayoutEffect(() => {
@@ -192,6 +192,7 @@ function CreateWorkout(){
         try {
           await addExercisesToDB(exercises);
           clearExercises();
+          console.log(exercises)
         } catch (error) {
           console.error('Error saving exercises to IndexedDB:', error);
         }
