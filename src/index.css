@@ -181,6 +181,12 @@ form {
   margin: 5px auto 20px auto;
 }
 
+
+li {
+  list-style-type: none;
+}
+
 span {
   color: #fca311;
 }
+
