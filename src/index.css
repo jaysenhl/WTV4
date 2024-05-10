@@ -23,7 +23,6 @@
   flex-direction: column;
   align-items: center;
   color: #ffffff;
-  padding: 15px 0;
 }
 
 .title {
@@ -38,7 +37,6 @@
 
 .linkBtn {
   height: 75px;
-  width: 300px;
   font-size: 1.6rem;
   background-color: #fca311;
   border-radius: 20px;
@@ -54,8 +52,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 30vh;
-  align-items: center;
+  height: 50dvh;
+  text-align: center;
+  background-color: rgba(84, 172, 249, 0.231);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
 }
 
 
@@ -192,4 +194,15 @@ span {
 
 .form-range {
   margin-bottom: 50px;
+}
+
+.customLottie {
+  height: 150px;
+}
+
+.btnWrappers {
+  background-color: rgba(84, 172, 249, 0.231);
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
 }
