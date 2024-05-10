@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import Header from './Header';
 import Quotes from './Quotes';
-import 'boxicons'
 
 function LinkButton({ title, to,icon }) {
   return (
